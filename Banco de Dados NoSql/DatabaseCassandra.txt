@@ -1,0 +1,27 @@
+CREATE KEYSPACE IF NOT EXISTS students WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : '1' }; //Create KEYSPACE
+
+CREATE TYPE address (
+   street text,
+   number text
+);
+
+CREATE TABLE student (
+   id text,
+   name text,
+   gender text,
+   address list<frozen<address>,
+   primary key(id)
+);
+
+INSERT INTO Test (id, name,gender, address) VALUES (
+   1,
+   'Ryan',
+   'M',
+   [{street: 'Example Street', number: '12'}]
+);
+
+UPDATE students.student
+SET name = 'John'
+WHERE id = '1';
+
+DELETE FROM students.student WHERE id = '1';

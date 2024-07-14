@@ -1,0 +1,27 @@
+db.students.insertMany([
+  { id: 1, name: 'Ryan', gender: 'M', idschool: 1 },
+  { id: 2, name: 'Joanna', gender: 'F', idschool: 1 }
+]);
+
+db.schools.insertMany([
+  { id: 1, name: 'A School' },
+  { id: 2, name: 'B School' }
+]);
+
+db.students.find({ gender: 'F' }).comment( "Find all Female Students" );
+db.students.find({ id: {$gte:1} }).comment( "Find all students with an ID greater or equal to 1" );
+
+db.students.updateOne( { id: 1 }, { $set: { name: 'John' } } ).comment("Update a student name");
+
+db.students.aggregate([
+  {
+    $lookup: {
+      from: "schools",
+      localField: "idschool",
+      foreignField: "id",
+      as: "schools",
+    },
+  }
+]).comment( "Returns all the students with their associated schools");
+
+db.students.deleteOne({ id:1 }).comment("Deletes a students based on the ID");

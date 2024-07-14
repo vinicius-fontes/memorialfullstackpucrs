@@ -1,0 +1,19 @@
+#Return all nodes
+MATCH (n) RETURN n LIMIT 25
+
+#Return nodes of a specific type (Person)
+MATCH (n:Person) RETURN n LIMIT 25
+
+#Return nodes based on relation
+MATCH (:Person {name:'Kevin Bacon'}) - [:ACTED_IN]->(movie:Movie) RETURN movie
+
+#Create new nodes
+CREATE (:Movie {title: "Batman Begins"})
+
+#Create a relationship between nodes
+MATCH (u:Person {name:'Kevin Bacon'}), (r:Movie {title:'Batman Begins'})
+CREATE (u)-[:HAS_ACTED]->(r)
+
+#Delete node
+MATCH (a:Movie { title: "Batman Begins" }) 
+DELETE a

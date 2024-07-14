@@ -1,0 +1,20 @@
+# Connecting to Redis Database
+redis-cli
+
+# Switching to database 1
+SELECT 1
+
+# Creating JSON Schema
+FT.CREATE students on json schema
+$.nome as nome text SORTABLE
+$.gender as gender text SORTABLE
+
+# Inserting a new Line
+JSON.SET 63d2e4079e760c94fdd173e7 $ '{"_id":{"$oid":"63d2e4079e760c94fdd173e7"},"nome":"Ryan", gender: "M"}
+
+#Searching the Database
+FT.SEARCH students "*"
+FT.SEARCH students "@nome:["Ryan"]"
+
+#Deleting the Line
+DEL 63d2e4079e760c94fdd173e7
