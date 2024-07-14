@@ -1,2 +1,2 @@
 # memorialfullstackpucrs
-Repositório contendo material desenvolvido ao longo do curso
+Repositório contendo material desenvolvido ao longo do curso.
